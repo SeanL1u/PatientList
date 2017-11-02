@@ -11,6 +11,7 @@
 @implementation Doctor
 - (instancetype)sessionInit
 {
+    NSLog(@"Doctor Name:");
     self.name = [InputControl new].currentInputStr;
     return self;
 }

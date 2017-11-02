@@ -19,20 +19,25 @@
     NSString *currentDateString = [dateFormatter stringFromDate:date];
     //-----------------------------------------
     
-    [patient sessionInit];
     if ([[patient healthCardNumber] isEqualToString:@""]){
         NSLog(@"Patient Not Accepted");}
     else{
+        NSLog(@"Feedback: ");
         doctor.feedback = [InputControl new].currentInputStr;
         NSLog(@"Prescription:");
         NSString* med = [InputControl new].currentInputStr;
-        while ([med isEqualToString:@""] == NO) {
+        doctor.medPrescribed = [NSMutableArray new];
+        
+        while ([med isEqualToString:@"done"] == NO) {
             [doctor.medPrescribed addObject: med];
             med = [InputControl new].currentInputStr;
-            patient.sessionSummary =@[doctor.name,@[patient.medsRequested,date,patient.symptoms,doctor.feedback,doctor.medPrescribed]];}
+            }
+     //summary
+        patient.sessionSummary =@[doctor.name,@[patient.medsRequested,date,patient.symptoms,doctor.feedback,doctor.medPrescribed]];
         
         patient.medicalHistory[currentDateString] = patient.sessionSummary;
         doctor.visitsLog[patient.name] =@[patient.name, patient.sessionSummary[1]];
+        doctor.medPrescribed = [NSMutableArray new];
         [patient summaryPrint];
         
 }

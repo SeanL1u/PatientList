@@ -13,9 +13,9 @@
 @property NSString* name;
 @property NSString* healthCardNumber;
 @property NSString* symptoms;
-@property NSArray* medsRequested;
+@property NSMutableArray* medsRequested;
 @property NSArray* sessionSummary;
 @property NSMutableDictionary* medicalHistory;
-- (instancetype)sessionInit;
+- (void)sessionInit;
 -(void)summaryPrint;
 @end

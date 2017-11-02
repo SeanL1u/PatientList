@@ -1,11 +1,3 @@
-//
-//  InputControl.m
-//  ThreeLow
-//
-//  Created by Sean Liu on 2017-11-01.
-//  Copyright © 2017 Sean Liu. All rights reserved.
-//
-
 #import "InputControl.h"
 
 @implementation InputControl
@@ -21,12 +13,23 @@
 
 
 -(void) getandConvert{
-    char inputstr[4];
+    char inputstr[255];
     scanf("%s", inputstr);
     self.currentInputStr = [NSString stringWithUTF8String:inputstr];
     self.numValue = [_currentInputStr integerValue];
     
 }
+
++(NSString*) loopTilValid:(NSArray<NSString*>*) validCommands{
+
+    NSString* input = [InputControl new].currentInputStr;
+    while([validCommands indexOfObjectIdenticalTo: input] == NSNotFound){
+        NSLog(@"\nInput Not Valid, try again");
+        input = [InputControl new].currentInputStr;
+        }
+    return input;
+}
+
 
 
 
